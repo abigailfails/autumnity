@@ -3,6 +3,7 @@ package com.minecraftabnormals.autumnity.core.other;
 import com.minecraftabnormals.abnormals_core.core.util.TradeUtil;
 import com.minecraftabnormals.abnormals_core.core.util.TradeUtil.AbnormalsTrade;
 import com.minecraftabnormals.autumnity.common.block.RedstoneJackOLanternBlock;
+import com.minecraftabnormals.autumnity.common.block.SnailSlimeBlock;
 import com.minecraftabnormals.autumnity.common.entity.passive.SnailEntity;
 import com.minecraftabnormals.autumnity.core.Autumnity;
 import com.minecraftabnormals.autumnity.core.registry.AutumnityBiomes;
@@ -106,6 +107,12 @@ public class AutumnityEvents {
 		if (!player.isSpectator()) {
 			if (item == AutumnityItems.FOUL_BERRIES.get() && ModList.get().isLoaded("berry_good")) {
 				event.setUseItem(Event.Result.DENY);
+			} else if (item == Items.SLIME_BALL) {
+				BlockItem blockItem = (BlockItem) AutumnityBlocks.SLIME.get().asItem();
+				BlockItemUseContext context = new BlockItemUseContext(event.getPlayer(), event.getHand(), event.getItemStack(), event.getHitVec());
+				blockItem.tryPlace(context);
+				event.setCancellationResult(ActionResultType.SUCCESS);
+				event.setCanceled(true);
 			} else if (player.isPotionActive(AutumnityEffects.FOUL_TASTE.get()) && player.canEat(false) && (block instanceof CakeBlock || (ModList.get().isLoaded("atmospheric") && block == AutumnityCompat.YUCCA_GATEAU))) {
 				if (player.getFoodStats().getFoodLevel() < 19) {
 					player.getFoodStats().addStats(1, 0.0F);

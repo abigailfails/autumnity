@@ -120,4 +120,5 @@ public class AutumnityBlocks {
 	// Compat
 	public static final RegistryObject<Block> FOUL_BERRY_SACK = HELPER.createCompatBlock("quark", "foul_berry_sack", () -> new Block(Block.Properties.create(Material.WOOL, MaterialColor.ORANGE_TERRACOTTA).hardnessAndResistance(0.5F).sound(SoundType.CLOTH)), ItemGroup.DECORATIONS);
 	public static final RegistryObject<Block> TURKEY_EGG_CRATE = HELPER.createBlock("turkey_egg_crate", () -> new Block(Block.Properties.create(Material.WOOD, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(1.5F).sound(SoundType.WOOD)), ModList.get().isLoaded("quark") && ModList.get().isLoaded("environmental") ? ItemGroup.DECORATIONS : null);
+	public static final RegistryObject<Block> SLIME = HELPER.createBlock("slime", () -> new PlaceableSlimeBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.GRASS).notSolid().doesNotBlockMovement().sound(SoundType.SLIME)), null);
 }
